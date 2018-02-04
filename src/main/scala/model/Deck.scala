@@ -3,7 +3,7 @@ package model
 import scala.util.Random
 
 object Deck {
-  def init() = {
+  def init(): List[Role] = {
 
     List.fill(5)(Guard) ++
     List.fill(2)(Priest) ++
@@ -16,4 +16,8 @@ object Deck {
   }
 
   def shuffle(deck: List[Role]) = Random.shuffle(deck)
+
+  def removeOne(deck: List[Role], index: Int) = {
+    deck.patch(index, Nil, 1)
+  }
 }
