@@ -1,5 +1,7 @@
 package model
 
+import scala.util.Random
+
 object Deck {
   def init() = {
 
@@ -12,4 +14,6 @@ object Deck {
     List.fill(1)(Countess) ++
     List.fill(1)(Princess)
   }
+
+  def shuffle(deck: List[Role]) = Random.shuffle(deck)
 }
