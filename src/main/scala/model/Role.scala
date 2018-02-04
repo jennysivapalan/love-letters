@@ -1,20 +1,23 @@
 package model
-//
-//object RoleName extends Enumeration {
-//  type = Value
-//  val GUARD, PRINCE = Value
-//}
-//
-//case class Role(name: RoleName, value: Int) {
-//  def greeting = s"Hello I am the $name, I have a value of $value"
-//}
 
-//object Role extends Role(name: String)
+sealed abstract class Role
+object Guard extends Role
+object Priest extends Role
+object Baron extends Role
+object Handmaid extends Role
+object Prince extends Role
+object King extends Role
+object Countess extends Role
+object Princess extends Role
 
-sealed abstract class Role( val name: String,  val value: Int) {
-  def greeting = s"Hello I am the $name, I have a value of $value"
+object Rules {
 
+  def points(role: Role) = {
+    role match {
+      case Guard => 1
+      case Prince => 5
+      case _ => 0
+    }
+  }
 }
-object Guard extends Role("Guard", 1)
-object Prince extends Role("Prince", 5)
 
