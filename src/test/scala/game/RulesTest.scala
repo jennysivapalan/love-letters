@@ -27,5 +27,13 @@ class RulesTest extends FreeSpec with Matchers {
     }
   }
 
+  "Player actions Baron" - {
+    "hand with higher points should win" in {
+      val player = Player(1, Baron, Some(Handmaid), Nil)
+      val opponent = Player(2, King, None, Nil)
+      Rules.baronAction(player, opponent) shouldBe opponent
+    }
+  }
+
 
 }
