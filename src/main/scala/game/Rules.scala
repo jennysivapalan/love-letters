@@ -12,10 +12,7 @@ object Rules {
     }
   }
 
-  def guardAction(guess: Role, opponent: Player): Boolean = {
-    if(guess == opponent.holdingCard) true
-    else false
-  }
+  def guardAction(guess: Role, opponent: Player): Boolean = opponent.cards.holdingCard == guess
 
   def priestAction(player: Player, opponent: Player) = {
     player.copy(opponentsHands = opponent :: player.opponentsHands)
@@ -23,11 +20,9 @@ object Rules {
 
   //returns the winning hand
   def baronAction(player: Player, opponent: Player): Player = {
-    val cardToComparePlayer =
-      if(player.holdingCard == Baron) player.pickedCard.get
-      else player.holdingCard
+    val cardToComparePlayer = player.cards.list.filterNot(_ == Baron).head
 
-    if(points(cardToComparePlayer).compareTo(points(opponent.holdingCard)) > 0) player
+    if(points(cardToComparePlayer).compareTo(points(opponent.cards.holdingCard)) > 0) player
     else opponent
 
   }

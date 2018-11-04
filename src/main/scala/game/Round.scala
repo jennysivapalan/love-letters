@@ -1,7 +1,7 @@
 package game
 
 import exceptions.NothingLeftInDeckException
-import model.{Deck, Player, Role}
+import model.{Deck, Player, Role, Cards}
 
 import scala.util.Random
 
@@ -15,7 +15,7 @@ object Round {
     val (cardsForPlayers, restOfDeck) = initialDeck.splitAt(numPlayers)
 
     val players = for(i <- 0 until numPlayers) yield {
-      Player(index = i, holdingCard = cardsForPlayers(i), pickedCard = None, opponentsHands = Nil)
+      Player(index = i, Cards(holdingCard = cardsForPlayers(i), pickedCard = None), opponentsHands = Nil)
     }
     Round(restOfDeck, players.toList)
   }
