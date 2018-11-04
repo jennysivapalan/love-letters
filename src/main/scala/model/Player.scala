@@ -1,4 +1,4 @@
 package model
 
-case class Player(cards: List[Role])
+case class Player(holdingCard: Role, pickedCard: Option[Role])
 

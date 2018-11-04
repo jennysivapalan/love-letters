@@ -1,5 +1,6 @@
 package model
 
+import game.Rules
 import org.scalatest.{FreeSpec, Matchers}
 
 

@@ -11,8 +11,6 @@ class RoundTest extends FreeSpec with Matchers {
       val round = Round.init(2)
       round.deck.size shouldEqual 13
       round.players.size shouldEqual 2
-      round.players(0).cards.size shouldEqual 1
-      round.players(1).cards.size shouldEqual 1
     }
 
     "if no card in deck round ends" in {
@@ -44,6 +42,7 @@ class RoundTest extends FreeSpec with Matchers {
       remaining2 shouldEqual List(Priest)
 
     }
+
 
   }
 
