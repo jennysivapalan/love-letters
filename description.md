@@ -24,3 +24,7 @@ prince | 5 | 2 | can make any player including own to discard card and pick up
 king | 6 | 1 | trade card with any player
 countess | 7 | 1 | if caught with prince or king must be discarded
 princess | 8 | 1 | if discarded player loses round
+
+Follow ups for later:
+- If player knows an opponent hand - use it to knock them out
+- If a player discards a hand known by other players update each `opponentsHands`
