@@ -15,7 +15,7 @@ object Round {
     val (cardsForPlayers, restOfDeck) = initialDeck.splitAt(numPlayers)
 
     val players = for(i <- 0 until numPlayers) yield {
-      Player(holdingCard = cardsForPlayers(i), pickedCard = None)
+      Player(index = i, holdingCard = cardsForPlayers(i), pickedCard = None, opponentsHands = Nil)
     }
     Round(restOfDeck, players.toList)
   }
