@@ -1,6 +1,6 @@
 package game
 
-import exceptions.{ActionNotPlayableOnHandmaid, NothingLeftInDeckException}
+import exceptions.{ActionNotPlayableOnHandmaid, NothingLeftInDeckException, PlayerIsOutOfRound}
 import model._
 import org.scalatest.{FreeSpec, Matchers}
 
@@ -60,6 +60,32 @@ class RulesTest extends FreeSpec with Matchers {
 
       assertThrows[ActionNotPlayableOnHandmaid]{
         Rules.baronAction(player, opponent)
+      }
+    }
+
+    "prince action cannot be made by opponent on player" in {
+      val opponent = Player(2, Cards(King, None, actioningHandmaid = true), Nil)
+
+      assertThrows[ActionNotPlayableOnHandmaid]{
+        Rules.princeAction(opponent, List())
+      }
+    }
+  }
+
+  "Player actions Prince" - {
+    "makes an opponent discard hand and pick new card from deck" in {
+      val opponent = Player(2, Cards(King, None), Nil)
+      val deck: List[Role] = List(Princess, Baron)
+
+      val opponentAfterAction: Player = Rules.princeAction(opponent, deck)
+      opponentAfterAction.cards.holdingCard shouldBe Princess
+    }
+    "ends the game if no cards to pull from deck" in {
+      val opponent = Player(2, Cards(King, None), Nil)
+      val deck: List[Role] = List()
+
+      assertThrows[PlayerIsOutOfRound] {
+        Rules.princeAction(opponent, deck)
       }
     }
   }

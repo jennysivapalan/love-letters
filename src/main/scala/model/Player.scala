@@ -6,5 +6,6 @@ case class Cards(holdingCard: Role, pickedCard: Option[Role], actioningHandmaid:
   def list: List[Role] = holdingCard :: pickedCard.toList
 
 }
-
-
+//object Cards {
+//  def apply(newHoldingCard: Role) = new Cards(newHoldingCard)
+//}
